@@ -1,6 +1,7 @@
 package com.example.designpatterns.controllers;
 
 import com.example.designpatterns.models.Book;
+import com.example.designpatterns.observer.BooksSubject;
 import com.example.designpatterns.repositories.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import java.util.Optional;
 public class BooksController {
 
     private final BooksRepository booksRepository;
+
+    private final BooksSubject allBooksSubject = BooksSubject.getInstance();
 
     @Autowired
     public BooksController(BooksRepository booksRepository) {
@@ -31,6 +34,7 @@ public class BooksController {
 
     @PostMapping
     public Book createBook(@RequestBody Book book) {
+        allBooksSubject.add(book);
         return booksRepository.save(book);
     }
 
