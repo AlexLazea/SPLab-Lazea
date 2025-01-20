@@ -1,25 +1,17 @@
 package com.example.designpatterns.observer;
 
 import com.example.designpatterns.models.Book;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class BooksSubject implements Subject<Book> {
 
-    private static BooksSubject instance;
+
     private List<Observer<Book>> observerCollection = new ArrayList<>();
 
-    private BooksSubject(){
-
-    }
-
-    public static BooksSubject getInstance() {
-        if (instance == null) {
-            instance = new BooksSubject();
-        }
-        return instance;
-    }
 
 
     public void attach(Observer<Book> observer){

@@ -15,11 +15,14 @@ public class BooksController {
 
     private final BooksRepository booksRepository;
 
-    private final BooksSubject allBooksSubject = BooksSubject.getInstance();
+    private final BooksSubject allBooksSubject;
 
     @Autowired
-    public BooksController(BooksRepository booksRepository) {
+    public BooksController(BooksRepository booksRepository, BooksSubject booksSubject) {
         this.booksRepository = booksRepository;
+        this.allBooksSubject = booksSubject;
+
+
     }
 
     @GetMapping
